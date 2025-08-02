@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Churn Prediction System</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: Green;
+            color: #333;
+            line-height: 1.6;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #34495e;
+        }
+        input[type="number"],
+        select {
+            width: calc(100% - 22px); /* Adjust for padding and border */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            font-size: 1rem;
+        }
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        h3 {
+            margin-top: 20px;
+            color: #27ae60; /* Green for success message */
+        }
+    </style>
+</head>
+<body>
+    <h2>Customer Churn Prediction</h2>
+    <form action="/predict" method="POST">
+        <label>Customer Age:</label><input type="number" name="Customer_Age"><br>
+        <label>Gender:</label>
+        <select name="Gender">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select><br>
+        <label>Dependent Count:</label><input type="number" name="Dependent_count"><br>
+        <label>Education Level:</label>
+        <select name="Education_Level">
+            <option value="High School">High School</option>
+            <option value="Graduate">Graduate</option>
+            <option value="Uneducated">Uneducated</option>
+            <option value="College">College</option>
+            <option value="Post-Graduate">Post-Graduate</option>
+            <option value="Doctorate">Doctorate</option>
+        </select><br>
+        <label>Marital Status:</label>
+        <select name="Marital_Status">
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Divorced">Divorced</option>
+        </select><br>
+        <label>Income Category:</label>
+        <select name="Income_Category">
+            <option value="Less than $40K">Less than $40K</option>
+            <option value="$40K - $60K">$40K - $60K</option>
+            <option value="$60K - $80K">$60K - $80K</option>
+            <option value="$80K - $120K">$80K - $120K</option>
+            <option value="$120K +">$120K +</option>
+        </select><br>
+        <label>Card Category:</label>
+        <select name="Card_Category">
+            <option value="Blue">Blue</option>
+            <option value="Silver">Silver</option>
+            <option value="Gold">Gold</option>
+            <option value="Platinum">Platinum</option>
+        </select><br>
+        <label>Months on Book:</label><input type="number" name="Months_on_book"><br>
+        <label>Total Relationship Count:</label><input type="number" name="Total_Relationship_Count"><br>
+        <label>Months Inactive (last 12 mo):</label><input type="number" name="Months_Inactive_12_mon"><br>
+        <label>Contacts Count (last 12 mo):</label><input type="number" name="Contacts_Count_12_mon"><br>
+        <label>Credit Limit:</label><input type="number" step="0.01" name="Credit_Limit"><br>
+        <label>Total Revolving Balance:</label><input type="number" name="Total_Revolving_Bal"><br>
+        <label>Avg Open To Buy:</label><input type="number" step="0.01" name="Avg_Open_To_Buy"><br>
+        <label>Total Amt Chg Q4/Q1:</label><input type="number" step="0.01" name="Total_Amt_Chng_Q4_Q1"><br>
+        <label>Total Trans Amt:</label><input type="number" name="Total_Trans_Amt"><br>
+        <label>Total Trans Count:</label><input type="number" name="Total_Trans_Ct"><br>
+        <label>Total Ct Chg Q4/Q1:</label><input type="number" step="0.01" name="Total_Ct_Chng_Q4_Q1"><br>
+        <label>Avg Utilization Ratio:</label><input type="number" step="0.01" name="Avg_Utilization_Ratio"><br>
+
+        <br><input type="submit" value="Predict">
+    </form>
+
+    <h3>{{ prediction_text }}</h3>
+</body>
+</html>
